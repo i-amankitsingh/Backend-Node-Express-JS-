@@ -13,7 +13,8 @@
   ],
   "author": "Ankit Singh",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.3"
+  "devDependencies": { 
+    "nodemon": "^3.1.3",
+    "prettier": "^3.3.0"
   }
 }
