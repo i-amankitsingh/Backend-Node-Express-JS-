@@ -23,5 +23,14 @@ import userRouter from "./routes/user.routes.js";
 //Routes declaration
 app.use("/api/v1/users", userRouter)
 
+app.get("/instagram", (req, res) => {
+    res.json({
+        "message" : "Hello User"
+    })
+})
+
+// app.listen(process.env.PORT, () => {
+//     console.log('Server is running on port :: ', process.env.PORT)
+// })
 
 export default app;
