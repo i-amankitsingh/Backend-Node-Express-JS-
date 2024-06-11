@@ -1,0 +1,33 @@
+import { MongoClient } from 'mongodb';
+
+/*
+ * Requires the MongoDB Node.js Driver
+ * https://mongodb.github.io/node-mongodb-native
+ */
+
+const agg = [
+  {
+    '$lookup': {
+      'from': 'Products', 
+      'localField': 'product_id', 
+      'foreignField': '_id', 
+      'as': 'ProductDetails'
+    }
+  }, {
+    '$addFields': {
+      'productDetails': {
+        '$arrayElemAt': [
+          '$ProductDetails', 0
+        ]
+      }
+    }
+  }
+];
+
+const client = await MongoClient.connect(
+  ''
+);
+const coll = client.db('StdData').collection('Student');
+const cursor = coll.aggregate(agg);
+const result = await cursor.toArray();
+await client.close();
