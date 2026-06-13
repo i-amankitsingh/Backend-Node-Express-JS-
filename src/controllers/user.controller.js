@@ -37,7 +37,6 @@ const registerUser = asyncHandler( async (req, res) => {
 
 
     const {fullName, email, username, password } = req.body
-    //console.log("email: ", email);
 
     if (
         [fullName, email, username, password].some((field) => field?.trim() === "")
@@ -64,11 +63,13 @@ const registerUser = asyncHandler( async (req, res) => {
     
 
     if (!avatarLocalPath) {
+
         throw new ApiError(400, "Avatar file is required")
     }
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
+    console.log("Avatar: ", avatar)
 
     if (!avatar) {
         throw new ApiError(400, "Avatar file is required")
